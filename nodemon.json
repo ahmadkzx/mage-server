@@ -1,8 +1,9 @@
 {
-  "ext": "js",
   "verbose": true,
+  "ext": ".ts,.js",
   "restartable": "rs",
   "runOnChangeOnly": false,
+  "exec": "npx ts-node ./src/index.ts",
   "ignore": [
     ".git",
     "dist",
@@ -12,7 +13,7 @@
     "js": "node"
   },
   "watch": [
-    "src/**/*.js"
+    "src"
   ],
   "env": {
     "NODE_ENV": "development"
