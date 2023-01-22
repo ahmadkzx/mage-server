@@ -1,0 +1,20 @@
+{
+  "ext": "js",
+  "verbose": true,
+  "restartable": "rs",
+  "runOnChangeOnly": false,
+  "ignore": [
+    ".git",
+    "dist",
+    "node_modules/**/node_modules"
+  ],
+  "execMap": {
+    "js": "node"
+  },
+  "watch": [
+    "src/**/*.js"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
