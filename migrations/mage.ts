@@ -21,4 +21,16 @@ exports.up = (pgm: MigrationBuilder) => {
       notNull: true,
     },
   })
+
+  pgm.createTable('schemas', {
+    id: 'id',
+    name: {
+      type: 'varchar(200)',
+      notNull: true,
+    },
+    data: {
+      type: 'varchar(20000)',
+      notNull: true,
+    },
+  })
 }
