@@ -1,14 +1,30 @@
 import express from 'express'
+import routes from './routes'
+import { Pool as PostgresqlPool } from 'pg'
 import { config as configEnv } from 'dotenv'
 import { json as jsonParserMiddleware, urlencoded as urlencodedMiddleware } from 'body-parser'
 
 configEnv()
 
-const app = express()
+async function init() {
+  try {
+    const app = express()
 
-app.use(jsonParserMiddleware())
-app.use(urlencodedMiddleware())
+    app.use(jsonParserMiddleware())
+    app.use(urlencodedMiddleware())
 
-app.listen(3000)
+    const dbPool = new PostgresqlPool()
+    app.set('db', dbPool)
 
-app.get('/', (req, res) => res.send('Hello World !'))
+    await app.listen(process.env.PORT)
+
+    app.use(routes)
+    app.get('/', (req, res) => res.send('Hello World !'))
+
+    console.log('✅ App started on port:', process.env.PORT)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+init()
