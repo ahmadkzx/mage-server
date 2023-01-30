@@ -28,6 +28,14 @@ export async function createAPI(req: Request, res: Response) {
       },
     ]
     validate(validatePayload)
+
+    const db = req.app.get('db')
+    await db.query(
+      'INSERT INTO apis (name, description, route, method, data) VALUES ($1, $2, $3, $4, $5)',
+      [req.body.name, req.body.description, req.body.route, req.body.method, req.body.data]
+    )
+
+    res.status(200).json({ data: true })
   } catch (err) {
     handleError(err, res)
   }
