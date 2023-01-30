@@ -6,7 +6,7 @@ export type BodyValidationItem = {
 
 export type BodyErrorItem = {
   param: string
-  messages: Array<string>
+  message: string
 }
 
 const validators = {
@@ -17,7 +17,7 @@ export function validate(params: Array<BodyValidationItem>) {
   const errors: Array<BodyErrorItem> = []
   params.forEach((param) => {
     if (!validators[param.validator](param.value)) {
-      errors.push({ param: param.name, messages: [`${param.name} is required`] })
+      errors.push({ param: param.name, message: `${param.name} is required` })
     }
   })
 
