@@ -40,3 +40,14 @@ export async function createAPI(req: Request, res: Response) {
     handleError(err, res)
   }
 }
+
+export async function getAPIs(req: Request, res: Response) {
+  try {
+    const db = req.app.get('db')
+    const { rows: apis } = await db.query('SELECT * FROM apis')
+
+    res.status(200).json({ data: apis })
+  } catch (err) {
+    handleError(err, res)
+  }
+}
