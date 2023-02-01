@@ -1,7 +1,7 @@
 import { validate } from '../utils/validator'
 import handleError from '../utils/handle-error'
 import type { Request, Response } from 'express'
-import type { BodyValidationItem } from '../utils/validator'
+import type { BodyValidationItem } from '../types/validator'
 
 export async function createAPI(req: Request, res: Response) {
   try {

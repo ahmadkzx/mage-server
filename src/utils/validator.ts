@@ -1,13 +1,4 @@
-export type BodyValidationItem = {
-  name: string
-  value: any
-  validator: 'required'
-}
-
-export type BodyErrorItem = {
-  param: string
-  message: string
-}
+import type { BodyValidationItem, BodyErrorItem } from '../types/validator'
 
 const validators = {
   required: (value: string) => value?.trim().length > 0,
