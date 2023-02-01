@@ -20,7 +20,7 @@ async function init() {
 
     await app.listen(process.env.PORT)
 
-    app.use(routes)
+    app.use(await routes())
     app.get('/', (req, res) => res.send('Hello World !'))
 
     console.log('✅ App started on port:', process.env.PORT)
