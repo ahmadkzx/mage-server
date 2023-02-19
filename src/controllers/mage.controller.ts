@@ -51,3 +51,31 @@ export async function getAPIs(req: Request, res: Response) {
     handleError(err, res)
   }
 }
+
+export async function createSchema(req: Request, res: Response) {
+  try {
+    const validatePayload: Array<BodyValidationItem> = [
+      {
+        name: 'name',
+        value: req.body.name,
+        validator: 'required',
+      },
+      {
+        name: 'data',
+        value: req.body.data,
+        validator: 'required',
+      },
+    ]
+    validate(validatePayload)
+
+    const db = req.app.get('db')
+    await db.query('INSERT INTO schemas (name, data) VALUES ($1, $2)', [
+      req.body.name,
+      req.body.data,
+    ])
+
+    res.status(200).json({ data: true })
+  } catch (err) {
+    handleError(err, res)
+  }
+}
