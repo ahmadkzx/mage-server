@@ -79,3 +79,14 @@ export async function createSchema(req: Request, res: Response) {
     handleError(err, res)
   }
 }
+
+export async function getSchemas(req: Request, res: Response) {
+  try {
+    const db = req.app.get('db')
+    const { rows: schemas } = await db.query('SELECT * FROM schemas')
+
+    res.status(200).json({ data: schemas })
+  } catch (err) {
+    handleError(err, res)
+  }
+}
